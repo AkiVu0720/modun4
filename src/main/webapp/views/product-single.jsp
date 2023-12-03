@@ -265,143 +265,59 @@
         </section>
 
         <!-- Main content -->
-        <section class="bg-light">
-            <div class="container pb-5">
+        <div class="card card-solid">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-5 mt-5">
-                        <div class="card mb-3">
-                            <img class="card-img img-fluid" src="${productView.image}" alt="Card image cap" id="product-detail">
+                    <div class="col-12 col-sm-6">
+                        <div class="col-12">
+                            <img src="${productView.image}" class="product-image" alt="Product Image">
                         </div>
-                        <div class="row">
-                            <!--Start Controls-->
-                            <div class="col-1 align-self-center">
-                                <a href="#multi-item-example" role="button" data-bs-slide="prev">
-                                    <i class="text-dark fas fa-chevron-left"></i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </div>
-                            <!--End Controls-->
-                            <!--Start Carousel Wrapper-->
-                            <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
-                                <!--Start Slides-->
-<%--                                <div class="carousel-inner product-links-wap" role="listbox">--%>
+                        <div class="col-12 product-image-thumbs">
+                            <c:forEach items="${imageList}" var="image">
+                            <div class="product-image-thumb active"><img src="${image.imageUrl}" alt="Product Image"></div>
 
-                                    <!--First slide-->
-<%--                                    <div class="carousel-item action">--%>
-                                        <div class="row">
-                                            <c:forEach items="${imageList}" var="image">
-                                            <div class="col-4">
-                                                <a href="#">
-                                                    <img class="card-img img-fluid" src="${image.imageUrl}" alt="Product Image 1">
-                                                </a>
-                                            </div>
-                                            </c:forEach>
-
-                                        </div>
-<%--                                    </div>--%>
-                                    <!--/.First slide-->
-
-<%--                                </div>--%>
-                                <!--End Slides-->
-                            </div>
-                            <!--End Carousel Wrapper-->
-                            <!--Start Controls-->
-                            <div class="col-1 align-self-center">
-                                <a href="#multi-item-example" role="button" data-bs-slide="next">
-                                    <i class="text-dark fas fa-chevron-right"></i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                            <!--End Controls-->
+                            </c:forEach>
                         </div>
                     </div>
-                    <!-- col end -->
-                    <div class="col-lg-7 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="h2">Active Wear</h1>
-                                <p class="h3 py-2">$25.00</p>
-                                <p class="py-2">
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                    <div class="col-12 col-sm-6">
+                        <h3 class="my-3">Id: ${productView.productId} - ${productView.productName}</h3>
+
+                        <hr>
+                        <h4>Chi tiết</h4>
+                        <div >
+                            <p>Mã loại: ${productView.category.categoryId}</p>
+                            <p>Tên loại: ${productView.category.categoryName}</p>
+                            <p>Mã sản phẩm: ${productView.productId}</p>
+                            <p>Tên sản phẩm: ${productView.productName}</p>
+                            <p>Tiêu đề: ${productView.tittle}</p>
+                            <p>Trạng thái: ${productView.productStatus}</p>
+                        </div>
+                        <div class="bg-gray py-2 px-3 mt-4">
+                            <h2 class="mb-0">
+                                <c:set var = "balance" value = "${productView.price}" />
+                                <p><fmt:setLocale value="en_US"/>
+                                    <fmt:formatNumber value="${balance}" type="currency"/>
                                 </p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h6>Brand:</h6>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <p class="text-muted"><strong>Easy Wear</strong></p>
-                                    </li>
-                                </ul>
-
-                                <h6>Description:</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum convallis. Nunc sed orci a diam ultrices aliquet interdum quis nulla.</p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h6>Avaliable Color :</h6>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <p class="text-muted"><strong>White / Black</strong></p>
-                                    </li>
-                                </ul>
-
-                                <h6>Specification:</h6>
-                                <ul class="list-unstyled pb-3">
-                                    <li>Lorem ipsum dolor sit</li>
-                                    <li>Amet, consectetur</li>
-                                    <li>Adipiscing elit,set</li>
-                                    <li>Duis aute irure</li>
-                                    <li>Ut enim ad minim</li>
-                                    <li>Dolore magna aliqua</li>
-                                    <li>Excepteur sint</li>
-                                </ul>
-
-                                <form action="" method="GET">
-                                    <input type="hidden" name="product-title" value="Activewear">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <ul class="list-inline pb-3">
-                                                <li class="list-inline-item">Size :
-                                                    <input type="hidden" name="product-size" id="product-size" value="S">
-                                                </li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-auto">
-                                            <ul class="list-inline pb-3">
-                                                <li class="list-inline-item text-right">
-                                                    Quantity
-                                                    <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                                                </li>
-                                                <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                                <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                                <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row pb-3">
-                                        <div class="col d-grid">
-                                            <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                        </div>
-                                        <div class="col d-grid">
-                                            <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
+                            </h2>
+                            <h4 class="mt-0">
+                                <small>Đã bao gồm VAT</small>
+                            </h4>
                         </div>
                     </div>
                 </div>
+                <div class="row mt-4">
+                    <nav class="w-100">
+                        <div class="nav nav-tabs" id="product-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content p-3" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">${productView.description}</div>
+                    </div>
+                </div>
             </div>
-        </section>
+            <!-- /.card-body -->
+        </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -433,23 +349,14 @@
 <!-- Start Script -->
 
 <!-- <script src="assets/js/jquery-migrate-1.2.1.min.js"></script> -->
-<script src="../resources/js/templatemo.js"></script>
-<script src="../resources/js/custom.js"></script>
-<!-- End Script -->
-
-<!-- Start Slider Script -->
-<script src="../resources/js/slick.min.js"></script>
-<script type="text/javascript">
-    $(".page-category").click(function () {
-        let pageId = $(this).attr("pageId")
-        let This = $(this)
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/category/findCategory?page="+pageId,
-            // data: { name: "John", location: "Boston" }
-        }).done(function() {
-            window.location = "http://localhost:8080/category/findCategory?page="+pageId
-        });
+<script>
+    $(document).ready(function() {
+        $('.product-image-thumb').on('click', function () {
+            var $image_element = $(this).find('img')
+            $('.product-image').prop('src', $image_element.attr('src'))
+            $('.product-image-thumb.active').removeClass('active')
+            $(this).addClass('active')
+        })
     })
 </script>
 </body>

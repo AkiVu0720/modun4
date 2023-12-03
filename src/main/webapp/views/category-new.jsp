@@ -226,13 +226,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/user/findUser" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/userManage/findUser" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>User</p>
                         </a>

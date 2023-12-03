@@ -227,7 +227,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -281,6 +281,7 @@
                                     <tbody>
                                     <tr data-widget="expandable-table" aria-expanded="true">
                                         <th>Bill ID</th>
+                                        <th>Acc ID</th>
                                         <th>Day</th>
                                         <th>Status</th>
                                     </tr>
@@ -296,7 +297,7 @@
 
                                         </td>
                                         <td>
-                                            <input readonly value="${editBill.account.accId}" name="account.accId"/>
+                                            <input type="text" readonly value="${editBill.account.accId}" name="account.accId"/>
                                         </td>
                                         <td>
                                             <input type="date"
@@ -309,10 +310,11 @@
                                         </td>
                                         <td>
                                             <select id="billStatusEdit" name="billStatus" class="form-control custom-select">
+                                                <option value="0" ${editBill.billStatus==1?"selected":""}>Huỷ</option>
                                                 <option value="1" ${editBill.billStatus==1?"selected":""}>Chờ</option>
                                                 <option value="2" ${editBill.billStatus==2?"selected":""}>Duyệt</option>
-                                                <option value="3" ${editBill.billStatus==3?"selected":""}>Huỷ</option>
-                                                <option value="4" ${editBill.billStatus==4?"selected":""}>Đã giao</option>
+                                                <option value="3" ${editBill.billStatus==3?"selected":""}>Đang giao</option>
+                                                <option value="4" ${editBill.billStatus==4?"selected":""}>Đã nhận</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -343,8 +345,11 @@
                                                                         <td>${billDetail2.bill.billId}</td>
                                                                         <td>${billDetail2.billDetailId}</td>
                                                                         <td>${billDetail2.product.productId}</td>
-                                                                        <td>${billDetail2.importPrice}</td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###.###vnd" value="${billDetail2.importPrice}" /></td>
+
                                                                         <td>${billDetail2.quantity}</td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###.###vnd" value="${billDetail2.importPrice * billDetail2.quantity}" /></td>
+
                                                                         <td class="project-actions text-right">
                                                                             <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/billDetai/initUpdate?billDetailId=${billDetail2.billDetailId}">
                                                                                 <i class="fas fa-pencil-alt">
@@ -369,7 +374,10 @@
                                     </tr>
                                         </tbody>
                                     </table>
-                                    <input  type="submit" value="Save Changes" class="btn btn-primary"/>
+                                    <div class="row justify-content-md-center mb-3">
+                                        <input  type="submit" value="Save Changes" class="btn btn-primary"/>
+                                    </div>
+
                                 </form>
 
 

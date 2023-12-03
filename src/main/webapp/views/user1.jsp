@@ -227,7 +227,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                            <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                            <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -350,15 +350,15 @@
                                             <td>${user.role?"Admin":"Client"}</td>
                                             <td>${user.accStatus?"Action":"Inaction"}</td>
                                             <td class="project-actions text-right">
-                                                <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/user/initUpdate?accId=${user.accId}">
+                                                <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/userManage/initUpdate?accId=${user.accId}">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
-                                                <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/user/delete?imageId=${user.accId}">
+                                                <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/userManage/delete?accId=${user.accId}&accStatus=${user.accStatus}">
                                                     <i class="fas fa-trash">
                                                     </i>
-                                                    Delete
+                                                        ${user.accStatus?"Delete":"_Open_ "}
                                                 </a>
                                             </td>
                                         </tr>
@@ -458,10 +458,10 @@
         let This = $(this)
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/category/findCategory?page="+pageId,
+            url: "http://localhost:8080/userManage/findUser?page="+pageId,
             // data: { name: "John", location: "Boston" }
         }).done(function() {
-            window.location = "http://localhost:8080/category/findCategory?page="+pageId
+            window.location = "http://localhost:8080/userManage/findUser?page="+pageId
         });
     })
 </script>

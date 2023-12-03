@@ -227,7 +227,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -252,12 +252,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Bill</h1>
+                        <h1>Dashboard</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Bill</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
                 </div>
@@ -280,7 +280,11 @@
                                             <!-- small box -->
                                             <div class="small-box bg-info">
                                                 <div class="inner">
-                                                    <h3>${revenueInDay}</h3>
+
+                                                    <h3>
+                                                        <fmt:formatNumber type="number" pattern="###,###vnd" value="${revenueInDay}" />
+
+                                                    </h3>
                                                     <p>Doanh Thu Theo Ngày</p>
                                                 </div>
                                                 <div class="icon">
@@ -294,7 +298,9 @@
                                             <!-- small box -->
                                             <div class="small-box bg-success">
                                                 <div class="inner">
-                                                    <h3>${revenueInMonth}<sup style="font-size: 20px"></sup></h3>
+                                                    <h3>
+                                                        <fmt:formatNumber type="number" pattern="###,###vnd" value=" ${revenueInMonth}" />
+                                                    </h3>
 
                                                     <p>Doanh Thu Theo Tháng</p>
                                                 </div>
@@ -309,7 +315,10 @@
                                             <!-- small box -->
                                             <div class="small-box bg-warning">
                                                 <div class="inner">
-                                                    <h3>${revenueInYear}</h3>
+                                                    <h3>
+                                                        <fmt:formatNumber type="number" pattern="###,###vnd" value="${revenueInYear}" />
+
+                                                    </h3>
                                                     <p>Doanh Thu Theo Năm</p>
                                                 </div>
                                                 <div class="icon">
@@ -471,7 +480,7 @@
                                             <!-- small box -->
                                             <div class="small-box bg-success">
                                                 <div class="inner">
-                                                    <h3>${billDone}<sup style="font-size: 20px">%</sup></h3>
+                                                    <h3>${billDone}</h3>
 
                                                     <p>Số đơn đã giao</p>
                                                 </div>

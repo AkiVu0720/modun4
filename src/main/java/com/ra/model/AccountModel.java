@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "account")
 public class AccountModel {
     @Id
-    @Column(name ="accId" )
+    @Column(name ="acc_id" )
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accId;
     @Column(name = "email")

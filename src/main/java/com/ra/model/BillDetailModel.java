@@ -13,8 +13,6 @@ public class BillDetailModel {
     private float importPrice;
     @Column(name = "quantity")
     private int quantity;
-//    @Column(name = "into_money")
-//    private double intoMoney;
     @ManyToOne
     @JoinColumn(name = "bill_id",referencedColumnName = "bill_id")
     private BillModel bill;

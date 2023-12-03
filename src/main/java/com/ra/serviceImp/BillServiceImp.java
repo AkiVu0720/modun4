@@ -20,7 +20,6 @@ public class BillServiceImp implements BillService {
     public List<BillModel> displayData(String billId, int page, int size, String direction, String sortBy) {
         Pageable pageable = PageRequest.of(page,size,direction.equals("ASC")? Sort.Direction.ASC: Sort.Direction.DESC,sortBy);
         List<BillModel> billList = billRepository.findByBillId(billId,pageable).getContent();
-
         return billList;
     }
 

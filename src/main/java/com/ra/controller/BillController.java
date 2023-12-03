@@ -43,6 +43,10 @@ public class BillController {
         List<BillModel> billlList = billService.displayData(billIdDefault,
                 pageDefault-1,SIZE,directionDefault,sortByDefaultBill);
         billlList.stream().forEach(billModel -> billModel.setBillDetailModels(billDetailService.findBillByBillDetail(billModel.getBillId())));
+        billlList.stream().forEach(billModel -> {
+            System.out.println("total:"+ billDetailService.sumBill(billModel.getBillId()));
+            billModel.setTotal(billDetailService.sumBill(billModel.getBillId()));
+        });
         List<Integer> listPage = billService.getListPage(billIdDefault,SIZE);
         mav.addObject("listBill", billlList);
         mav.addObject("listPage",listPage);
@@ -67,6 +71,7 @@ public class BillController {
         AccountModel newAcc = new AccountModel();
         newAcc.setAccId(editBill.getAccount().getAccId());
         editBill.setAccount(newAcc);
+        editBill.setTotal(billDetailService.sumBill(editBill.getBillId()));
         boolean result = billService.save0rUpdate(editBill);
         if (result){
             return "redirect:findBill";

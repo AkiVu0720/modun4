@@ -64,4 +64,16 @@ public class CategoryServiceImp implements CategoryService {
         }
         return false;
     }
+
+    @Override
+    public boolean setStatus(int categoryId, boolean status) {
+        try {
+            categoryRepository.setStatus(categoryId, status);
+            return  true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return  false;
+        }
+
+    }
 }

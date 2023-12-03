@@ -73,8 +73,8 @@ public class CatelogyContoller {
         }
     }
     @GetMapping(value = "delete")
-    public String deleteCategory(int categoryId){
-        boolean result = categoryService.delete(categoryId);
+    public String deleteCategory(int categoryId, boolean status){
+        boolean result = categoryService.setStatus(categoryId,!status);
         if (result){
             return "redirect:findCategory";
         }else {

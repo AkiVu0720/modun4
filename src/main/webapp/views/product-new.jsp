@@ -226,7 +226,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -289,7 +289,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="productId">Id Code</label>
+                                                <label for="productId">Product Id</label>
                                                 <input type="text" id="productId" name="productId" class="form-control">
                                             </div>
                                             <div class="form-group">
@@ -326,7 +326,7 @@
                                                 <label for="productImage">Image Info</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="productImage" name="productImageEdit" >
+                                                        <input type="file" class="custom-file-input" id="productImage" name="productImage" >
                                                         <label class="custom-file-label" for="productImage">Choose file</label>
                                                     </div>
 

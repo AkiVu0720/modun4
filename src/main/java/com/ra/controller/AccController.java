@@ -58,4 +58,13 @@ public class AccController {
             return "404";
         }
     }
+    @GetMapping("delete")
+    private String delete(int accId, boolean accStatus){
+        boolean result = accountService.accStatus(accId,accStatus);
+        if (result){
+            return "redirect:findUser";
+        }else {
+            return "404";
+        }
+    }
 }

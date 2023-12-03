@@ -3,6 +3,7 @@ package com.ra.serviceImp;
 import com.google.cloud.storage.*;
 import com.ra.model.ImageProductModel;
 import com.ra.repository.ImageRepository;
+import com.ra.repository.ProductRepository;
 import com.ra.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +31,8 @@ public class ImageServiceImp implements ImageService {
     private ServletContext servletContext;
     @Autowired
     private ImageRepository imageRepository;
+    @Autowired
+    private ProductRepository productRepository;
     private  final String LINK_NAME = "fruit-c76ea.appspot.com";
     @Override
     public String uploadFile(MultipartFile multipartFile) {
@@ -134,6 +137,24 @@ public class ImageServiceImp implements ImageService {
 
     @Override
     public ImageProductModel findByImageUrl(String imageUrl) {
-           return  imageRepository.findByImageUrl(imageUrl);
+        ImageProductModel imageProductModel = imageRepository.findByImageUrl(imageUrl);
+        return  imageProductModel;
     }
+
+
+    @Override
+    public String findProductId(Optional<Integer> imageId, Optional<String> imageUrl) {
+         int imageIdItem =  imageId.orElse(0);
+         String imageUrlItem =  imageUrl.orElse("");
+        if (imageIdItem !=0){
+            return findById(imageIdItem).getProduct().getProductId();
+        }
+        if (imageUrlItem.length()>1){
+            ImageProductModel productModel = findByImageUrl(imageUrlItem);
+            System.out.println("getProductId"+productModel.getProduct().getProductId());
+            return findByImageUrl(imageUrlItem).getProduct().getProductId();
+        }
+        return null;
+    }
+
 }

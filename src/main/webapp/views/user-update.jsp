@@ -226,7 +226,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -290,7 +290,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="userName">User Name</label>
-                                            <input type="text" id="userName" name="userName" value="value="${accountUpdate.userName}"" class="form-control">
+                                            <input type="text" id="userName" name="userName" value="${accountUpdate.userName}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>

@@ -236,7 +236,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -353,37 +353,38 @@
                                                         <input type="file" class="custom-file-input" id="productImageEdit" name="productImageEdit" >
                                                         <label class="custom-file-label" for="productImageEdit">Choose file</label>
                                                     </div>
-                                                    <div class="custom-file">
+                                                    <div class="input-group">
                                                         <input type="text" value="${productEdit.image}" class="form-control rounded-0">
                                                         <span class="input-group-append">
-                                                            <button href="<%=request.getContextPath()%>/image/delete?imageUrl=${productEdit.image}" type="button" class="btn btn-info btn-flat">Go!</button>
+                                                            <a href="<%=request.getContextPath()%>/image/delete?imageUrl=${productEdit.image}"
+                                                               class="btn btn-info btn-flat">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </a>
+
                                                         </span>
                                                     </div>
-
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="listImage">Item image </label>
+                                                <label for="listImageEdit">List image </label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="listImageEdit" name="listImageEdit" multiple>
                                                         <label class="custom-file-label" for="listImageEdit">Choose file</label>
                                                     </div>
                                                 </div>
-                                                <div class="custom-file">
-                                                    <c:forEach items="${imageList}" var="image">
-                                                        <div class="row ">
-                                                            <div class="col-md-12">
-                                                                <input type="text" class= "custom-file-input" id="listImage" name="listImageEdit" multiple>
-                                                                <label class="custom-file-label" for="listImage">Choose file</label>
-                                                                <input type="text" value="${image.imageUrl}" class="form-control rounded-0">
-                                                                <span class="input-group-append">
-                                                                    <button href="<%=request.getContextPath()%>/image/delete?imageId=${image.imageId}" type="button" class="btn btn-info btn-flat">Go!</button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <c:forEach items="${imageList}" var="image">
+                                                    <div class=" input-group m-1 ">
+                                                        <input type="text" value="${image.imageUrl}" class="form-control rounded-0">
+                                                        <span class="input-group-append">
+                                                            <a href="<%=request.getContextPath()%>/image/delete?imageId=${image.imageId}"
+                                                               class="btn btn-info btn-flat"><i
+                                                                    class="far fa-trash-alt"></i> </a>
+                                                        </span>
+                                                    </div>
+                                                </c:forEach>
                                             </div>
 
 

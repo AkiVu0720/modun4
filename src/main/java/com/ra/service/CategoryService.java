@@ -10,4 +10,5 @@ public interface CategoryService {
     CategoryModel findById(int categoryId);
     boolean save0rUpdate(CategoryModel category);
     boolean delete(int categoryId);
+    boolean setStatus(int categoryId, boolean status);
 }

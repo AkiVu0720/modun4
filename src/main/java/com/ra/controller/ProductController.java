@@ -69,29 +69,28 @@ public class ProductController {
     }
     @PostMapping("create")
     public String createProduct(ProductModel productNew,MultipartFile productImage, MultipartFile[] listImage){
-            ProductModel product = productService.save0rUpdate(productNew);
+        String imageUrl = imageService.uploadFile(productImage);
+        productNew.setImage(imageUrl);
+        ProductModel productModel = productService.save0rUpdate(productNew);
         if (productImage!=null) {
-            String imageUrl = imageService.uploadFile(productImage);
-            productNew.setImage(imageUrl);
             ImageProductModel imageProductModel = new ImageProductModel();
-            imageProductModel.setProduct(product);
+            imageProductModel.setProduct(productModel);
             imageProductModel.setImageUrl(imageUrl);
             boolean result = imageService.save(imageProductModel);
         }
-        if (product!=null){
-            if (listImage!=null){
+
+        if (listImage!=null){
                 Arrays.asList(listImage).forEach(image->{
                     String imageLink = imageService.uploadFile(image);
                     ImageProductModel imageProductModel = new ImageProductModel();
-                    imageProductModel.setProduct(product);
+                    imageProductModel.setProduct(productModel);
                     imageProductModel.setImageUrl(imageLink);
                     boolean result = imageService.save(imageProductModel);
                 });
             }
+
             return "redirect:findProduct";
-        }else {
-            return "404";
-        }
+
     }
     @GetMapping("initUpdate")
     public String initUpdate(ModelMap modelMap, String productId){
@@ -107,10 +106,9 @@ public class ProductController {
     }
     @PostMapping("update")
     public String update(ProductModel productEdit,MultipartFile productImageEdit, MultipartFile[] listImageEdit ){
-
         if (productImageEdit.getSize()>1){
-            String imageUrl = imageService.uploadFile(productImageEdit);
-            productEdit.setImage(imageUrl);
+            String imageUrlItem = imageService.uploadFile(productImageEdit);
+            productEdit.setImage(imageUrlItem);
             ImageProductModel imageProductModel = new ImageProductModel();
             imageProductModel.setProduct(productEdit);
             imageProductModel.setImageUrl(imageUrl);
@@ -118,6 +116,7 @@ public class ProductController {
         }else {
             productEdit.setImage(imageUrl);
         }
+
         if (listImageEdit.length >1){
                 Arrays.asList(listImageEdit).forEach(image->{
                     String imageLink = imageService.uploadFile(image);
@@ -130,6 +129,7 @@ public class ProductController {
             productEdit.setImageList(listImage);
         }
         ProductModel updateProduct = productService.save0rUpdate(productEdit);
+
             return "redirect:findProduct";
     }
     @GetMapping("delete")

@@ -14,7 +14,8 @@ public interface BillDetailService {
     BillDetailModel findByDetailId(int billDetailId);
     boolean save0rUpdate(BillDetailModel billDetail);
     boolean delete(int billDetailId);
-    Double sumInDay();
-    double sumInMonth();
-    double sumInYear();
+    float sumInDay();
+    Float sumBill(String billId);
+    float sumInMonth();
+    float sumInYear();
 }

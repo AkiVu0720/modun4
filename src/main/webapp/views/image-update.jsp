@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: apple
@@ -11,7 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Product</title>
+    <title>Image</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -215,7 +214,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/product/findProduct" class="nav-link active">
+                        <a href="<%=request.getContextPath()%>/product/findProduct" class="nav-link">
                             <i class="nav-icon fas fa-columns"></i>
                             <p>Product</p>
                         </a>
@@ -227,7 +226,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                            <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link active">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -252,12 +251,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Product</h1>
+                        <h1>Image</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Product</li>
+                            <li class="breadcrumb-item active">Image</li>
                         </ol>
                     </div>
                 </div>
@@ -271,128 +270,47 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">List data fruit Product</h3>
+                                <h3 class="card-title">List data Image</h3>
                             </div>
                             <!-- /.card-header -->
 
-                            <div class="container-fluid">
-                                <!-- <h2 class="text-center display-4">Enhanced Search</h2> -->
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-10 offset-md-1">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <form action="<%=request.getContextPath()%>/product/findProduct" method="get">
-                                                        <div class="form-group">
-                                                            <div class="input-group input-group-lg pt-2">
-                                                                <input type="search" id="productName" name="productName" class="form-control form-control-lg" placeholder="search name">
-                                                                <div class="input-group-append">
-                                                                    <button type="submit" class="btn btn-lg btn-default">
-                                                                        <i class="fa fa-search"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                                <div class="col-3">
-                                                    <form>
-                                                        <div  class="form-group">
-                                                            <label>Sort Order:</label>
-                                                            <select id="direction" name="direction" class="select2" style="width: 100%;">
-                                                                <option value="ASC" ${direction.equals("ASC")?'selected':''}>ASC</option>
-                                                                <option value="DESC" ${direction.equals("DESC")?'selected':''}>DESC</option>
-                                                            </select>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="col-3">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label>Order By:</label>
-                                                            <select id="sortBy" name="sortBy" class="select2" style="width: 100%;">
-                                                                <option value="productId" ${sortBy.equals("productId")?'selected':''}>Id</option>
-                                                                <option value="productName" ${sortBy.equals("productName")?'selected':''}>Name</option>
-                                                                <option value="productCreated" ${sortBy.equals("productCreated")?'selected':''}>Day</option>
-                                                            </select>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <button type="button" id="modal-create" class="btn btn-primary">
-                                                    Add
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
                             <div class="card-body">
+                                <form action="<%=request.getContextPath()%>/image/update" method="post" enctype="multipart/form-data">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Id</th>
-                                        <th>ProductName</th>
-                                        <th>Price</th>
-                                        <th>Description</th>
-                                        <th>Image</th>
-                                        <th>Unit</th>
-                                        <th>Day</th>
-                                        <th>Status</th>
-                                        <th>CategoryName</th>
-                                        <th>Action</th>
+                                        <th>Image Id</th>
+                                        <th>Image URL</th>
+                                        <th>Image ProductID</th>
+                                        <th>Image ProductName</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:set var="stt" value="0" scope="page"/>
-                                    <c:forEach items="${listProduct}" var="product">
-                                        <c:set var="stt" value="${stt+1}" scope="page"/>
+
                                     <tr>
-                                        <td>${stt}</td>
-                                        <td>${product.productId}</td>
-                                        <td>${product.productName}</td>
-                                        <td>${product.price}</td>
-                                        <td>${product.description}</td>
-                                        <td><img src="${product.image}" alt="${product.productName}" width="50" height="50"></td>
-                                        <td>${product.productUnit}</td>
-                                        <td>${product.productCreated}</td>
-                                        <td>${product.productStatus?"Active":"Inactive"}</td>
-                                        <td>${product.category.categoryName}</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" readonly id="imageId" name="imageId" value="${imageEdit.imageId}" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="file" id="imageUrl" name="imageUrlItem" value="${imageEdit.imageUrl}" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text"  id="productId" name="product.productId" value="${imageEdit.product.productId}" class="form-control">
+
+                                        </td>
+                                        <td>${imageEdit.product.productName}</td>
                                         <td class="project-actions text-right">
-                                            <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/product/viewProduct?productId=${product.productId}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                View
-                                            </a>
-                                            <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/product/initUpdate?productId=${product.productId}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-<%--                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/product/delete?productId=${product.productId}">--%>
-<%--                                                <i class="fas fa-trash">--%>
-<%--                                                </i>--%>
-<%--                                                Delete--%>
-<%--                                            </a>--%>
+                                            <input type="submit" class="btn btn-info btn-sm" value="Update">
                                         </td>
                                     </tr>
-                                    </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="row mt-3">
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers">
-                                            <c:forEach items="${listPage}" var="page">
-                                                <a class=" btn btn-primary btn-sm" href="<%=request.getContextPath()%>/product/findProduct?page=${page}">${page}</a>
-<%--                                                <span class=" btn btn-primary btn-sm page-category" pageId="${page}">${page}</span>--%>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
+
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -424,49 +342,10 @@
 <!-- ./wrapper -->
 <!-- Button trigger modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <form action="<%=request.getContextPath()%>/category/findCategory/create" method="post">
-                    <div class="form-group">
-                        <label for="categoryNameNew">Name</label>
-                        <input type="text" id="categoryNameNew" name="categoryName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="direction">Description</label>
-                        <textarea id="description" name="description" class="form-control" rows="4"> </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoryStatus">Status</label>
-                        <select id="categoryStatus" name="categoryStatus" class="form-control custom-select">
-                            <option disabled>Select one</option>
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-
-                        </select>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="modal-close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="modal-submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- jQuery -->
 <script src="../resources/init/plugins/jquery/jquery.min.js"></script>
 <%--<!-- Bootstrap 4 -->--%>
-<script src="../resources/js/product.js"></script>
+<script src="../resources/js/image.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
@@ -477,12 +356,13 @@
         let This = $(this)
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/product/findProduct?page="+pageId,
+            url: "http://localhost:8080/image/findImage?page="+pageId,
             // data: { name: "John", location: "Boston" }
         }).done(function() {
-            window.location = "http://localhost:8080/product/findProduct?page="+pageId
+            window.location = "http://localhost:8080/image/findImage?page="+pageId
         });
     })
 </script>
+
 </body>
 </html>

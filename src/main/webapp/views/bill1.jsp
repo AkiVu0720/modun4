@@ -227,7 +227,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
@@ -312,7 +312,8 @@
                                                         <div class="form-group">
                                                             <label>Order By:</label>
                                                             <select id="sortBy" name="sortBy" class="select2" style="width: 100%;">
-                                                                <option value="created" ${sortBy.equals("created")?'selected':''}>Id</option>
+                                                                <option value="created" ${sortBy.equals("created")?'selected':''}>Day</option>
+                                                                <option value="billStatus" ${sortBy.equals("billStatus")?'selected':''}>Status</option>
                                                             </select>
                                                         </div>
                                                     </form>
@@ -333,17 +334,21 @@
                                     <tr data-widget="expandable-table" aria-expanded="true">
                                         <th>
                                             <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-                                            BillId: ${bill.billId} - UserName: ${bill.account.userName}  - ${bill.billStatus==1?"Đang chờ":bill.billStatus==2?"Đã Duyệt": bill.billStatus==3?"Đang Giao":"Đã nhận"}
+                                            Mã Bill: ${bill.billId} - Tên K.H: ${bill.account.userName}  - Tổng Tiền:
+                                            <fmt:setLocale value="en_US"/>
+                                            <fmt:formatNumber type="number"
+                                                              maxFractionDigits="3"
+                                                              pattern="###,###vnd"
+                                                              value="${bill.total}" />
+                                            - Ngày thanh toán: ${bill.created}
+                                            - ${bill.billStatus==0?"Huỷ":bill.billStatus==1?"Đang chờ":bill.billStatus==2?"Đã Duyệt": bill.billStatus==3?"Đang Giao":"Đã nhận"}
+
                                             <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/bill/initUpdate?billId=${bill.billId}">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                             </a>
                                         </th>
-<%--                                        <th>UserName: ${bilDetail.bill.account.userName}</th>--%>
-<%--                                        <th>Day <fmt:formatDate value="${bilDetail.bill.created}" pattern="yyyy-MM-dd"/></th>--%>
-<%--                                        <th>Status: ${bilDetail.bill.billStatus==1?"Đang chờ":bilDetail.bill.billStatus==2?"Đã Duyệt": bilDetail.bill.billStatus==3?"Đang Giao":"Đã nhận"}</th>--%>
-
                                     </tr>
                                     <tr class="expandable-body">
                                         <td>
@@ -355,12 +360,13 @@
                                                                 <table id="example2" class="table table-bordered table-hover">
                                                                     <thead>
                                                                     <tr>
-                                                                        <th>Bil Id</th>
-                                                                        <th>Bill Detail Id</th>
-                                                                        <th>Product Id</th>
-                                                                        <th>Price</th>
-                                                                        <th>Quantity</th>
-                                                                        <th>Total bill</th>
+                                                                        <th>Mã Bil</th>
+                                                                        <th>Mã Bill C.tiết</th>
+                                                                        <th>Mã s.p</th>
+                                                                        <th>Tên s.p</th>
+                                                                        <th>Giá</th>
+                                                                        <th>Số lượng</th>
+                                                                        <th>Thành tiền</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -369,8 +375,11 @@
                                                                         <td>${billDetail2.bill.billId}</td>
                                                                         <td>${billDetail2.billDetailId}</td>
                                                                         <td>${billDetail2.product.productId}</td>
-                                                                        <td>${billDetail2.importPrice}</td>
+                                                                        <td>${billDetail2.product.productName}</td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###,###vnd" value="${billDetail2.importPrice*1000}" /></td>
+<%--                                                                        <td>${billDetail2.importPrice}</td>--%>
                                                                         <td>${billDetail2.quantity}</td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###,###vnd" value="${billDetail2.importPrice * billDetail2.quantity*1000}" /></td>
                                                                         <td class="project-actions text-right">
                                                                             <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/billDetai/initUpdate?billDetailId=${billDetail2.billDetailId}">
                                                                                 <i class="fas fa-pencil-alt">
@@ -461,6 +470,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+<!-- Button trigger modal -->
 <!-- Button trigger modal -->
 
 <!-- jQuery -->

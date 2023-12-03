@@ -75,6 +75,6 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public boolean productStatus(String productId) {
-        return productRepository.productStatus(productId);
+        return productRepository.setProductStatus(productId);
     }
 }

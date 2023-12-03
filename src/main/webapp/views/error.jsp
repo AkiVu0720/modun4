@@ -1,16 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: apple
-  Date: 16.11.2023
-  Time: 02:33
+  Date: 19.11.2023
+  Time: 01:28
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Category Update</title>
+    <title>Error</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -22,7 +22,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="<c:url value="/resources/init/dist/css/adminlte.min.css"/>">
 </head>
-<body class="hold-transition sidebar-mini">
+<body>
 <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -194,52 +194,6 @@
                 </div>
             </div>
 
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a href="<%=request.getContextPath()%>/dashboard/data" class= "nav-link ">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/category/findCategory"  class="nav-link active">
-                            <i class="nav-icon fas fa-book"></i>
-                            <p>Catalog</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/product/findProduct" class="nav-link">
-                            <i class="nav-icon fas fa-columns"></i>
-                            <p>Product</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/bill/findBill" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
-                            <p>Bill</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
-                            <i class="nav-icon far fa-image"></i>
-                            <p>Image</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/userManage/findUser" class="nav-link">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>User</p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
     </aside>
@@ -251,12 +205,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Project Update</h1>
+                        <h1>404 Error Page</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Category Update</li>
+                            <li class="breadcrumb-item active">Error Page</li>
                         </ol>
                     </div>
                 </div>
@@ -265,64 +219,22 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Category</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <form action="<%=request.getContextPath()%>/category/update" method="post">
-                                    <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="categoryName">ID</label>
-                                        <input type="text" readonly id="categoryId" name="categoryId" value="${categoryEdit.categoryId}" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="categoryName">Name</label>
-                                        <input type="text" id="categoryName" name="categoryName" value="${categoryEdit.categoryName}" class="form-control">
-                                    </div>
-
-
-
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="categoryStatus">Status</label>
-                                        <select id="categoryStatus" name="categoryStatus" class="form-control custom-select">
-                                            <option disabled>Select one</option>
-                                            <option value="true" ${categoryEdit.categoryStatus?"selected":""}>Active</option>
-                                            <option value="false" ${categoryEdit.categoryStatus?"":"selected"}>Inactive</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description</label>
-                                        <textarea id="description" name="description" class="form-control" rows="3">${categoryEdit.description}
-                                        </textarea>
-                                    </div>
-
-                                </div>
-                                    </div>
-                                <div class="col-12">
-                                    <a href="<%=request.getContextPath()%>/category/findCategory" class="btn btn-secondary">Cancel</a>
-                                    <input type="submit" value="Save Changes" class="btn btn-success float-right"/>
-                                </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
+            <div class="error-page">
+                <h2 class="headline text-warning col-12">Error</h2>
+                <div class="error-content p-3>
+                    <h3><i class="fas fa-exclamation-triangle text-warning"></i> Bạn không có quyền truy cập</h3>
+                    <p>
+                        Tài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại.
+                    </p>
+                    <button type="button" href="<%=request.getContextPath()%>/loginManager/loginPage" class="btn btn-primary btn-block mb-4">
+                        Đăng nhập
+                    </button>
                 </div>
-                <!-- /.card -->
+                <!-- /.error-content -->
             </div>
-
+            <!-- /.error-page -->
+        </section>
+        <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
@@ -339,15 +251,5 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<!-- Button trigger modal -->
-
-
-<!-- jQuery -->
-<script src="../resources/init/plugins/jquery/jquery.min.js"></script>
-<%--<!-- Bootstrap 4 -->--%>
-<script src="../resources/js/category.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
 </body>
 </html>

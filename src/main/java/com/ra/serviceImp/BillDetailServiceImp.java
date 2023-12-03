@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class BillDetailServiceImp implements BillDetailService {
+    private final int RATE = 1000;
     @Autowired
     private BillDetailRepository billDetailRepository;
     @Override
@@ -74,17 +75,22 @@ public class BillDetailServiceImp implements BillDetailService {
     }
 
     @Override
-    public Double sumInDay() {
-        return billDetailRepository.sumInDay();
+    public float sumInDay() {
+        return billDetailRepository.sumInDay()*RATE;
     }
 
     @Override
-    public double sumInMonth() {
-        return billDetailRepository.sumInMonth();
+    public Float sumBill(String billId) {
+        return billDetailRepository.sumBill(billId)*RATE;
     }
 
     @Override
-    public double sumInYear() {
-        return billDetailRepository.sumInYear();
+    public float sumInMonth() {
+        return billDetailRepository.sumInMonth()*RATE;
+    }
+
+    @Override
+    public float sumInYear() {
+        return billDetailRepository.sumInYear()*RATE;
     }
 }

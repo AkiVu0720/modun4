@@ -5,8 +5,11 @@ import com.ra.model.ProductModel;
 import com.ra.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -40,20 +43,29 @@ public class ImageController {
         mav.addObject("sortBy", sortByDefault);
         return mav;
     }
-//    @GetMapping(value = "deleteById")
-//    public String deleteImageById(int imageId){
-//        boolean result = imageService;
-//        if (result){
-//            return "redirect:findImage";
-//        }else {
-//            return "404";
-//        }
-//    }
+    @GetMapping("initUpdate")
+    public String initUpdate(ModelMap modelMap, int imageId){
+        ImageProductModel imageProductModel = imageService.findById(imageId);
+        modelMap.addAttribute("imageEdit",imageProductModel);
+        return "image-update";
+    }
+    @PostMapping("update")
+    public String update(ImageProductModel imageEdit, MultipartFile imageUrlItem){
+            String imageUrl = imageService.uploadFile(imageUrlItem);
+            imageEdit.setImageUrl(imageUrl);
+            boolean result = imageService.save(imageEdit);
+        if (result){
+            return "redirect:findImage";
+        }else {
+            return "404";
+        }
+    }
+
     @GetMapping(value = "delete")
     public String deleteImageByUrl(Optional<String> imageUrl,Optional<Integer>imageId){
+        String productId = imageService.findProductId(imageId,imageUrl);
         boolean result = imageService.delete1(imageId,imageUrl);
-        String productId = imageService.findById(imageId.get()).getProduct().getProductId();
-        if (result){
+        if (result || productId!=null){
             return "redirect:../product/initUpdate?productId="+productId;
         }else {
             return "404";

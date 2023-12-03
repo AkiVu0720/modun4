@@ -18,6 +18,8 @@ public class BillModel {
     private Date created;
     @Column(name = "bill_status")
     private int billStatus;
+    @Column(name = "total")
+    private float total;
     @ManyToOne
     @JoinColumn(name = "accId")
     private AccountModel account;
@@ -69,6 +71,13 @@ public class BillModel {
         this.billDetailModels = billDetailModels;
     }
 
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
     //Constructor
 
     /**
@@ -76,10 +85,12 @@ public class BillModel {
      */
     public BillModel() {
     }
-    public BillModel(String billId, Date created, int billStatus, AccountModel account, List<BillDetailModel> billDetailModels) {
+
+    public BillModel(String billId, Date created, int billStatus, float total, AccountModel account, List<BillDetailModel> billDetailModels) {
         this.billId = billId;
         this.created = created;
         this.billStatus = billStatus;
+        this.total = total;
         this.account = account;
         this.billDetailModels = billDetailModels;
     }

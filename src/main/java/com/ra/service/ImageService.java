@@ -23,4 +23,5 @@ public interface ImageService {
     boolean delete1(Optional<Integer> imageId, Optional<String> imageUrl);
 
     ImageProductModel findByImageUrl(String imageUrl);
+    String findProductId(Optional<Integer> imageId, Optional<String> imageUrl);
 }

@@ -74,4 +74,28 @@ public class AccountServiceImp implements AccountService {
         return  accountRepository.findByAccStatusFalse();
     }
 
+    @Override
+    public boolean findByUserNameAndPassword(String userName, String password) {
+        try {
+        AccountModel accLogin = accountRepository.findByUserNameAndPassword(userName,password);
+
+        if (accLogin!=null){
+            return accLogin.isRole();
+        }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    @Override
+    public boolean accStatus(int accId, boolean accStatus) {
+        try {
+            accountRepository.setStatus(accId, !accStatus);
+            return  true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return  false;
+        }
+    }
+
 }

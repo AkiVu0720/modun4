@@ -200,7 +200,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
-                        <a href="<%=request.getContextPath()%>/dashboard>" class= "nav-link ">
+                        <a href="<%=request.getContextPath()%>/dashboard/data" class= "nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -226,13 +226,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href=<%=request.getContextPath()%>/image/findImage" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/image/findImage" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>Image</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/user/findUser" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/userManage/findUser" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>User</p>
                         </a>
@@ -284,7 +284,7 @@
                                                     <form action="<%=request.getContextPath()%>/category/findCategory" method="get">
                                                         <div class="form-group">
                                                             <div class="input-group input-group-lg pt-2">
-                                                                <input type="search" id="categoryName" name="categoryName" class="form-control form-control-lg" placeholder="search name">
+                                                                <input type="search" id="categoryName" name="categoryName" class="form-control form-control-lg categoryName" placeholder="search name">
                                                                 <div class="input-group-append">
                                                                     <button type="submit" class="btn btn-lg btn-default">
                                                                         <i class="fa fa-search"></i>
@@ -357,13 +357,14 @@
                                                 </i>
                                                 Edit
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/category/delete?categoryId=${category.categoryId}">
+                                            <a class="btn btn-danger btn-sm btn-delete" modal-data="${category.categoryStatus}" href="<%=request.getContextPath()%>/category/delete?categoryId=${category.categoryId}&status=${category.categoryStatus}">
                                                 <i class="fas fa-trash">
                                                 </i>
-                                                Delete
+                                                ${category.categoryStatus?"Delete":"_Open_ "}
                                             </a>
                                         </td>
                                     </tr>
+
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -408,47 +409,6 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="card-body">
-                    <form action="<%=request.getContextPath()%>/category/findCategory/create" method="post">
-                    <div class="form-group">
-                        <label for="categoryNameNew">Name</label>
-                        <input type="text" id="categoryNameNew" name="categoryName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="direction">Description</label>
-                        <textarea id="description" name="description" class="form-control" rows="4"> </textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="categoryStatus">Status</label>
-                        <select id="categoryStatus" name="categoryStatus" class="form-control custom-select">
-                            <option disabled>Select one</option>
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
-
-                        </select>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="modal-close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" id="modal-submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- jQuery -->
 <script src="../resources/init/plugins/jquery/jquery.min.js"></script>
 <%--<!-- Bootstrap 4 -->--%>
@@ -470,40 +430,6 @@
         });
     })
 </script>
-<%--<!-- DataTables  & Plugins -->--%>
-<%--<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>--%>
-<%--<script src="../../plugins/jszip/jszip.min.js"></script>--%>
-<%--<script src="../../plugins/pdfmake/pdfmake.min.js"></script>--%>
-<%--<script src="../../plugins/pdfmake/vfs_fonts.js"></script>--%>
-<%--<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>--%>
-<%--<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>--%>
-<%--<!-- AdminLTE App -->--%>
-<%--<script src="../../dist/js/adminlte.min.js"></script>--%>
-<%--<!-- AdminLTE for demo purposes -->--%>
-<%--<script src="../../dist/js/demo.js"></script>--%>
-<%--<!-- Page specific script -->--%>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#example1").DataTable({--%>
-<%--            "responsive": true, "lengthChange": false, "autoWidth": false,--%>
-<%--            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]--%>
-<%--        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');--%>
-<%--        $('#example2').DataTable({--%>
-<%--            "paging": true,--%>
-<%--            "lengthChange": false,--%>
-<%--            "searching": false,--%>
-<%--            "ordering": true,--%>
-<%--            "info": true,--%>
-<%--            "autoWidth": false,--%>
-<%--            "responsive": true,--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
+
 </body>
 </html>

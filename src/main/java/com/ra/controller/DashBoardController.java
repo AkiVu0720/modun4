@@ -41,9 +41,9 @@ public class DashBoardController {
         int billApprove = billService.billStatus(3);
         int sumBill = billService.billAll();
 
-        Double revenueInDay = billDetailService.sumInDay();
-//        double revenueInMonth = billDetailService.sumInMonth();
-//        double revenueInYear = billDetailService.sumInYear();
+        float revenueInDay = billDetailService.sumInDay();
+        float revenueInMonth = billDetailService.sumInMonth();
+        float revenueInYear = billDetailService.sumInYear();
 
         mav.addObject("accStatusTrue",accStatusTrue);
         mav.addObject("accStatusFalse",accStatusFalse);
@@ -60,8 +60,8 @@ public class DashBoardController {
         mav.addObject("sumBill", sumBill);
 
         mav.addObject("revenueInDay",revenueInDay);
-//        mav.addObject("revenueInMonth",revenueInMonth);
-//        mav.addObject("revenueInYear",revenueInYear);
+        mav.addObject("revenueInMonth",revenueInMonth);
+        mav.addObject("revenueInYear",revenueInYear);
 
 
         return mav;

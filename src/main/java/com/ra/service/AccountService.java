@@ -14,4 +14,6 @@ public interface AccountService {
     boolean delete(int accId);
     int accStatusTrue();
     int accStatusFalse();
+    boolean findByUserNameAndPassword(String userName, String password);
+    boolean accStatus(int accId, boolean accStatus);
 }
