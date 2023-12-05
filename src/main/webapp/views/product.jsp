@@ -357,7 +357,7 @@
                                         <td>${product.productName}</td>
                                         <td>${product.price}</td>
                                         <td>${product.description}</td>
-                                        <td><img src="${product.image}" alt="${product.productName}" width="50" height="50"></td>
+                                        <td><img src="${product.image}" alt="${product.productName}" width="70" height="70"></td>
                                         <td>${product.productUnit}</td>
                                         <td>${product.productCreated}</td>
                                         <td>${product.productStatus?"Active":"Inactive"}</td>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductModel, String> {
-    @Query ("select p from ProductModel p where p.productName like %?1% and p.productStatus=true ")
+    @Query ("select p from ProductModel p where p.productName like %?1% ")
     Page<ProductModel> findByProductNameContaining(String productName,Pageable pageable);
     int countByProductNameContains(String productName);
     @Query("select count (*) from ProductModel p where p.productStatus=false ")

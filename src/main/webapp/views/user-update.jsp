@@ -208,7 +208,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/category/findCategory"  class="nav-link active">
+                        <a href="<%=request.getContextPath()%>/category/findCategory"  class="nav-link ">
                             <i class="nav-icon fas fa-book"></i>
                             <p>Catalog</p>
                         </a>
@@ -232,7 +232,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/user/findUser" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/user/findUser" class="nav-link active">
                             <i class="nav-icon fas fa-users"></i>
                             <p>User</p>
                         </a>
@@ -269,7 +269,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Category</h3>
+                            <h3 class="card-title">User</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -277,20 +277,20 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="<%=request.getContextPath()%>/user/update" method="post">
+                            <form action="<%=request.getContextPath()%>/userManage/update" method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="accId">Acc ID</label>
-                                            <input type="text" id="accId" name="accId" value="${accountUpdate.accId}" class="form-control">
+                                            <input type="text" id="accId" readonly name="accId" value="${accountUpdate.accId}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" id="email" name="email" value="${accountUpdate.email}" class="form-control">
+                                            <input type="text" id="email" readonly name="email" value="${accountUpdate.email}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="userName">User Name</label>
-                                            <input type="text" id="userName" name="userName" value="${accountUpdate.userName}" class="form-control">
+                                            <input type="text" id="userName" readonly name="userName" value="${accountUpdate.userName}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
@@ -301,27 +301,32 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="created">Day</label>
-                                            <input type="text" id="created" name="created" value="${accountUpdate.created}" class="form-control">
+                                            <input type="date" readonly id="created" name="created" value="${accountUpdate.created}" class="form-control">
+
                                         </div>
                                         <div class="form-group">
                                             <label for="role">Role</label>
-                                            <input type="text" id="role" name="role" value="${accountUpdate.role}" class="form-control">
+                                            <select id="role" name="role" value="${accountUpdate.role}" class="form-control custom-select">
+                                                <option disabled>Select one</option>
+                                                <option value="true" ${accountUpdate.role?"selected":""}>Admin</option>
+                                                <option value="false" ${accountUpdate.role?"":"selected"}>Khách Hàng</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="accStatus">accStatus</label>
                                             <select id="accStatus" name="accStatus" value="${accountUpdate.accStatus}" class="form-control custom-select">
                                                 <option disabled>Select one</option>
                                                 <option value="true" ${accountUpdate.accStatus?"selected":""}>Active</option>
-                                                <option value="false" ${categoryEdit.categoryStatus?"":"selected"}>Inactive</option>
+                                                <option value="false" ${accountUpdate.accStatus?"":"selected"}>Inactive</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <a href="<%=request.getContextPath()%>/user/findUser" class="btn btn-secondary">Cancel</a>
+                                    <a href="<%=request.getContextPath()%>/userManage/findUser" class="btn btn-secondary">Cancel</a>
                                     <input type="submit" value="Save Changes" class="btn btn-success float-right"/>
                                 </div>
-                                </form>
+                            </form>
                         </div>
                     </div>
                     <!-- /.card-body -->

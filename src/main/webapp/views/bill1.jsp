@@ -386,11 +386,11 @@
                                                                                 </i>
                                                                                 Edit
                                                                             </a>
-                                                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/billDetai/delete?billDetailId=${billDetail2.billDetailId}">
-                                                                                <i class="fas fa-trash">
-                                                                                </i>
-                                                                                Delete
-                                                                            </a>
+<%--                                                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/billDetai/delete?billDetailId=${billDetail2.billDetailId}">--%>
+<%--                                                                                <i class="fas fa-trash">--%>
+<%--                                                                                </i>--%>
+<%--                                                                                Delete--%>
+<%--                                                                            </a>--%>
                                                                         </td>
                                                                     </tr>
                                                                     </c:forEach>

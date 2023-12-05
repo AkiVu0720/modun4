@@ -226,9 +226,9 @@
                     <p>
                         Tài khoản hoặc mật khẩu bị sai. Vui lòng đăng nhập lại.
                     </p>
-                    <button type="button" href="<%=request.getContextPath()%>/loginManager/loginPage" class="btn btn-primary btn-block mb-4">
+                    <a type="button" href="<%=request.getContextPath()%>/loginManager/loginPage" class="btn btn-primary btn-block mb-4">
                         Đăng nhập
-                    </button>
+                    </a>
                 </div>
                 <!-- /.error-content -->
             </div>

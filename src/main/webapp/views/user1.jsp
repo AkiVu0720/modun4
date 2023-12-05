@@ -215,7 +215,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/product/findProduct" class="nav-link active">
+                        <a href="<%=request.getContextPath()%>/product/findProduct" class="nav-link ">
                             <i class="nav-icon fas fa-columns"></i>
                             <p>Product</p>
                         </a>
@@ -233,7 +233,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<%=request.getContextPath()%>/userManage/findUser" class="nav-link">
+                        <a href="<%=request.getContextPath()%>/userManage/findUser" class="nav-link active">
                             <i class="nav-icon fas fa-users"></i>
                             <p>User</p>
                         </a>
@@ -348,7 +348,7 @@
                                             <td>${user.password}</td>
                                             <td><fmt:formatDate value="${user.created}" pattern="yyyy-MM-dd"/></td>
                                             <td>${user.role?"Admin":"Client"}</td>
-                                            <td>${user.accStatus?"Action":"Inaction"}</td>
+                                            <td>${user.accStatus?"Active":"InActive"}</td>
                                             <td class="project-actions text-right">
                                                 <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/userManage/initUpdate?accId=${user.accId}">
                                                     <i class="fas fa-pencil-alt">

@@ -21,7 +21,7 @@ public interface BillDetailRepository extends JpaRepository<BillDetailModel,Inte
     List<BillDetailModel>findBillDetailModelByBill_BillId(String billId);
     @Query("select sum(b.importPrice*b.quantity) from BillDetailModel b where b.bill.billId like ?1")
     Float sumBill(String billId );
-    @Query( value = "select sum(bd.import_price*bd.quantity) from (bill_detail bd inner join bill b on bd.bill_id = b.bill_id) where b.bill_status = 3 AND  date (b.created) = date(CURRENT_DATE())",nativeQuery = true)
+    @Query( value = "select COALESCE(sum(bd.import_price*bd.quantity),0) from (bill_detail bd inner join bill b on bd.bill_id = b.bill_id) where b.bill_status = 3 AND   b.created = CURRENT_DATE()",nativeQuery = true)
     float sumInDay();
 
     @Query( value = "select sum(bd.import_price*bd.quantity) from (bill_detail bd inner join bill b on bd.bill_id = b.bill_id) where b.bill_status = 3 AND  MONTH(b.created) = MONTH(CURRENT_DATE())",nativeQuery = true)

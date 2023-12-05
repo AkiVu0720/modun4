@@ -297,7 +297,7 @@
 
                                         </td>
                                         <td>
-                                            <input type="text" readonly value="${editBill.account.accId}" name="account.accId"/>
+                                            <input class="form-control" type="text" readonly value="${editBill.account.accId}" name="account.accId"/>
                                         </td>
                                         <td>
                                             <input type="date"
@@ -345,10 +345,10 @@
                                                                         <td>${billDetail2.bill.billId}</td>
                                                                         <td>${billDetail2.billDetailId}</td>
                                                                         <td>${billDetail2.product.productId}</td>
-                                                                        <td><fmt:formatNumber type="number" pattern="###.###vnd" value="${billDetail2.importPrice}" /></td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###,###vnd" value="${billDetail2.importPrice*1000}" /></td>
 
                                                                         <td>${billDetail2.quantity}</td>
-                                                                        <td><fmt:formatNumber type="number" pattern="###.###vnd" value="${billDetail2.importPrice * billDetail2.quantity}" /></td>
+                                                                        <td><fmt:formatNumber type="number" pattern="###,###vnd" value="${billDetail2.importPrice * billDetail2.quantity*1000}" /></td>
 
                                                                         <td class="project-actions text-right">
                                                                             <a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/billDetai/initUpdate?billDetailId=${billDetail2.billDetailId}">
@@ -356,11 +356,11 @@
                                                                                 </i>
                                                                                 Edit
                                                                             </a>
-                                                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/billDetail/delete?billDetailId=${billDetail2.billDetailId}">
-                                                                                <i class="fas fa-trash">
-                                                                                </i>
-                                                                                Delete
-                                                                            </a>
+<%--                                                                            <a class="btn btn-danger btn-sm" href="<%=request.getContextPath()%>/billDetail/delete?billDetailId=${billDetail2.billDetailId}">--%>
+<%--                                                                                <i class="fas fa-trash">--%>
+<%--                                                                                </i>--%>
+<%--                                                                                Delete--%>
+<%--                                                                            </a>--%>
                                                                         </td>
                                                                     </tr>
                                                                     </c:forEach>

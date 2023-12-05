@@ -88,9 +88,7 @@ public class ProductController {
                     boolean result = imageService.save(imageProductModel);
                 });
             }
-
             return "redirect:findProduct";
-
     }
     @GetMapping("initUpdate")
     public String initUpdate(ModelMap modelMap, String productId){
@@ -117,7 +115,7 @@ public class ProductController {
             productEdit.setImage(imageUrl);
         }
 
-        if (listImageEdit.length >1){
+        if (listImageEdit.length>1){
                 Arrays.asList(listImageEdit).forEach(image->{
                     String imageLink = imageService.uploadFile(image);
                     ImageProductModel imageProductModel = new ImageProductModel();
@@ -125,7 +123,7 @@ public class ProductController {
                     imageProductModel.setImageUrl(imageLink);
                     boolean result = imageService.save(imageProductModel);
                 });
-        }else {
+        }else{
             productEdit.setImageList(listImage);
         }
         ProductModel updateProduct = productService.save0rUpdate(productEdit);
